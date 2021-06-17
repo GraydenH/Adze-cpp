@@ -2,5 +2,5 @@
 *.sln
 *.vcxproj*
 
-/bin/
-int/
+target/
+obj/
