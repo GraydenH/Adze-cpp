@@ -4,6 +4,7 @@
 
 #include "Core.h"
 #include "spdlog/spdlog.h"
+#include "spdlog/fmt/ostr.h"
 
 namespace engine {
 	class ENGINE_API Log {
@@ -26,8 +27,8 @@ namespace engine {
 #define ENGINE_CORE_FATAL(...) ::engine::Log::getCoreLogger()->fatal(__VA_ARGS__)
 
 // client log macros
-#define ENGINE_CLIENT_ERROR(...) ::engine::Log::getClientLogger()->error(__VA_ARGS__)
-#define ENGINE_CLIENT_TRACE(...) ::engine::Log::getClientLogger()->trace(__VA_ARGS__)
-#define ENGINE_CLIENT_WARN(...) ::engine::Log::getClientLogger()->warn(__VA_ARGS__)
-#define ENGINE_CLIENT_INFO(...) ::engine::Log::getClientLogger()->info(__VA_ARGS__)
-#define ENGINE_CLIENT_FATAL(...) ::engine::Log::getClientLogger()->fatal(__VA_ARGS__)
+#define ENGINE_ERROR(...) ::engine::Log::getClientLogger()->error(__VA_ARGS__)
+#define ENGINE_TRACE(...) ::engine::Log::getClientLogger()->trace(__VA_ARGS__)
+#define ENGINE_WARN(...) ::engine::Log::getClientLogger()->warn(__VA_ARGS__)
+#define ENGINE_INFO(...) ::engine::Log::getClientLogger()->info(__VA_ARGS__)
+#define ENGINE_FATAL(...) ::engine::Log::getClientLogger()->fatal(__VA_ARGS__)

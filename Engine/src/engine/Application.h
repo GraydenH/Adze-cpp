@@ -1,5 +1,8 @@
 #pragma once
+
 #include "Core.h"
+#include "events/Event.h"
+
 namespace engine {
 	class ENGINE_API Application {
 	public:
