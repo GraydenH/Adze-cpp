@@ -17,6 +17,9 @@ project "Engine"
 	targetdir ("target/" .. outputdir .. "/%{prj.name}")
 	objdir ("obj/" .. outputdir .. "/%{prj.name}")
 
+	pchheader "enginepch.h"
+	pchsource "Engine/src/enginepch.cpp"
+
 	files {
 		"%{prj.name}/src/**.h",
 		"%{prj.name}/src/**.cpp",
