@@ -1,12 +1,12 @@
-#include "enginepch.h"
+#include "adzepch.h"
 
 #include "Application.h"
-#include "engine/events/ApplicationEvent.h"
-#include "engine/Log.h"
+#include "adze/events/ApplicationEvent.h"
+#include "adze/Log.h"
 
 #include <GLFW/glfw3.h>
 
-namespace engine {
+namespace adze {
 	Application::Application() {
 		window = std::unique_ptr<Window>(Window::create());
 	}

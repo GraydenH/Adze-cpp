@@ -1,7 +1,7 @@
-#include "enginepch.h"
+#include "adzepch.h"
 #include "WindowsWindow.h"
 
-namespace engine {
+namespace adze {
 
 	static bool glfwInitialized = false;
 
@@ -22,12 +22,12 @@ namespace engine {
 		data.width = props.width;
 		data.height = props.height;
 
-		ENGINE_CORE_INFO("Creating window {0} ({1}, {2})", props.title, props.width, props.height);
+		ADZE_CORE_INFO("Creating window {0} ({1}, {2})", props.title, props.width, props.height);
 
 		if (!glfwInitialized) {
 			// TODO: glfwTerminate on system shutdown
 			int success = glfwInit();
-			ENGINE_CORE_ASSERT(success, "Could not intialize GLFW!");
+			ADZE_CORE_ASSERT(success, "Could not intialize GLFW!");
 
 			glfwInitialized = true;
 		}

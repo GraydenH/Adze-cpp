@@ -1,10 +1,10 @@
-#include "enginepch.h"
+#include "adzepch.h"
 
 #include "Log.h"
 
 #include "spdlog/sinks/stdout_color_sinks.h"
 
-namespace engine {
+namespace adze {
 	std::shared_ptr<spdlog::logger> Log::clientLogger;
 	std::shared_ptr<spdlog::logger> Log::coreLogger;
 

@@ -1,5 +1,7 @@
-workspace "Engine"
+workspace "Adze"
 	architecture "x64"
+
+	startproject "Sandbox"
 
 	configurations {
 		"Debug",
@@ -10,20 +12,20 @@ workspace "Engine"
 outputdir = "%{cfg.buildscfg}-%{cfg.system}-%{cfg.architecture}"
 
 IncludeDir = {}
-IncludeDir["GLFW"] = "Engine/vendor/GLFW/include"
+IncludeDir["GLFW"] = "ADZE/vendor/GLFW/include"
 
-include "Engine/vendor/GLFW"
+include "Adze/vendor/GLFW"
 
-project "Engine"
-	location "Engine"
+project "Adze"
+	location "Adze"
 	kind "SharedLib"
 	language "C++"
 
 	targetdir ("target/" .. outputdir .. "/%{prj.name}")
 	objdir ("obj/" .. outputdir .. "/%{prj.name}")
 
-	pchheader "enginepch.h"
-	pchsource "Engine/src/enginepch.cpp"
+	pchheader "adzepch.h"
+	pchsource "Adze/src/adzepch.cpp"
 
 	files {
 		"%{prj.name}/src/**.h",
@@ -47,8 +49,8 @@ project "Engine"
 		systemversion "latest"
 
 		defines {
-			"ENGINE_PLATFORM_WINDOWS",
-			"ENGINE_BUILD_DLL",
+			"ADZE_PLATFORM_WINDOWS",
+			"ADZE_BUILD_DLL",
 		}
 
 	postbuildcommands
@@ -58,17 +60,17 @@ project "Engine"
 
 	filter "configurations:Debug"
 		defines {
-			"ENGINE_DEBUG",
-			"ENGINE_ENABLE_ASSERTS"
+			"ADZE_DEBUG",
+			"ADZE_ENABLE_ASSERTS"
 		}
 		symbols "On"
 
 	filter "configurations:Release"
-		defines "ENGINE_RELEASE"
+		defines "ADZE_RELEASE"
 		optimize "On"
 
 	filter "configurations:Dist"
-		defines "ENGINE_DIST"
+		defines "ADZE_DIST"
 		optimize "On"
 
 	filter { "system:windows", "configurations:Release" }
@@ -88,12 +90,12 @@ project "Sandbox"
 	}
 
 	includedirs {
-		"Engine/vendor/spdlog/include",
-		"Engine/src"
+		"Adze/vendor/spdlog/include",
+		"Adze/src"
 	}
 
 	links {
-		"Engine"
+		"Adze"
 	}
 
 	filter "system:windows"
@@ -102,17 +104,17 @@ project "Sandbox"
 		systemversion "latest"
 
 		defines {
-			"ENGINE_PLATFORM_WINDOWS"
+			"ADZE_PLATFORM_WINDOWS"
 		}
 
 	filter "configurations:Debug"
-		defines "ENGINE_DEBUG"
+		defines "ADZE_DEBUG"
 		symbols "On"
 
 	filter "configurations:Release"
-		defines "ENGINE_RELEASE"
+		defines "ADZE_RELEASE"
 		optimize "On"
 
 	filter "configurations:Dist"
-		defines "ENGINE_DIST"
+		defines "ADZE_DIST"
 		optimize "On"

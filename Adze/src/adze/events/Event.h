@@ -1,11 +1,11 @@
 #pragma once
 
-#include "engine/Core.h"
+#include "adze/Core.h"
 
 #include <string>
 #include <functional>
 
-namespace engine {
+namespace adze {
 
 	// Events in Hazel are currently blocking, meaning when an event occurs it
 	// immediately gets dispatched and must be dealt with right then an there.
@@ -37,7 +37,7 @@ namespace engine {
 
 #define EVENT_CLASS_CATEGORY(category) virtual int getCategoryFlags() const override { return category; }
 
-	class ENGINE_API Event
+	class ADZE_API Event
 	{
 		friend class EventDispatcher;
 	public:

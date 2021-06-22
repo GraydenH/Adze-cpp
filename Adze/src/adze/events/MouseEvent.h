@@ -4,9 +4,9 @@
 
 #include <sstream>
 
-namespace engine {
+namespace adze {
 
-	class ENGINE_API MouseMovedEvent : public Event
+	class ADZE_API MouseMovedEvent : public Event
 	{
 	public:
 		MouseMovedEvent(float x, float y)
@@ -28,7 +28,7 @@ namespace engine {
 		float mouseX, mouseY;
 	};
 
-	class ENGINE_API MouseScrolledEvent : public Event
+	class ADZE_API MouseScrolledEvent : public Event
 	{
 	public:
 		MouseScrolledEvent(float xOffset, float yOffset)
@@ -50,7 +50,7 @@ namespace engine {
 		float xOffset, yOffset;
 	};
 
-	class ENGINE_API MouseButtonEvent : public Event
+	class ADZE_API MouseButtonEvent : public Event
 	{
 	public:
 		inline int GetMouseButton() const { return button; }
@@ -63,7 +63,7 @@ namespace engine {
 		int button;
 	};
 
-	class ENGINE_API MouseButtonPressedEvent : public MouseButtonEvent
+	class ADZE_API MouseButtonPressedEvent : public MouseButtonEvent
 	{
 	public:
 		MouseButtonPressedEvent(int button)
@@ -79,7 +79,7 @@ namespace engine {
 		EVENT_CLASS_TYPE(MouseButtonPressed)
 	};
 
-	class ENGINE_API MouseButtonReleasedEvent : public MouseButtonEvent
+	class ADZE_API MouseButtonReleasedEvent : public MouseButtonEvent
 	{
 	public:
 		MouseButtonReleasedEvent(int button)

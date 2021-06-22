@@ -4,9 +4,9 @@
 
 #include <sstream>
 
-namespace engine {
+namespace adze {
 
-	class ENGINE_API KeyEvent : public Event
+	class ADZE_API KeyEvent : public Event
 	{
 	public:
 		inline int GetKeyCode() const { return keyCode; }
@@ -19,7 +19,7 @@ namespace engine {
 		int keyCode;
 	};
 
-	class ENGINE_API KeyPressedEvent : public KeyEvent
+	class ADZE_API KeyPressedEvent : public KeyEvent
 	{
 	public:
 		KeyPressedEvent(int keycode, int repeatCount)
@@ -39,7 +39,7 @@ namespace engine {
 		int repeatCount;
 	};
 
-	class ENGINE_API KeyReleasedEvent : public KeyEvent
+	class ADZE_API KeyReleasedEvent : public KeyEvent
 	{
 	public:
 		KeyReleasedEvent(int keycode)

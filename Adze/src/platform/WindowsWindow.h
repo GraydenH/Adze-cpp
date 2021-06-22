@@ -1,10 +1,10 @@
 #pragma once
 
-#include "engine/Window.h"
+#include "adze/Window.h"
 
 #include <GLFW/glfw3.h>
 
-namespace engine {
+namespace adze {
 
 	class WindowsWindow : public Window
 	{

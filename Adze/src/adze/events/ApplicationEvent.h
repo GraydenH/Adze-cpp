@@ -4,9 +4,9 @@
 
 #include <sstream>
 
-namespace engine {
+namespace adze {
 
-	class ENGINE_API WindowResizeEvent : public Event
+	class ADZE_API WindowResizeEvent : public Event
 	{
 	public:
 		WindowResizeEvent(unsigned int width, unsigned int height)
@@ -28,7 +28,7 @@ namespace engine {
 		unsigned int width, height;
 	};
 
-	class ENGINE_API WindowCloseEvent : public Event
+	class ADZE_API WindowCloseEvent : public Event
 	{
 	public:
 		WindowCloseEvent() {}
@@ -37,7 +37,7 @@ namespace engine {
 		EVENT_CLASS_CATEGORY(EventCategoryApplication)
 	};
 
-	class ENGINE_API AppTickEvent : public Event
+	class ADZE_API AppTickEvent : public Event
 	{
 	public:
 		AppTickEvent() {}
@@ -46,7 +46,7 @@ namespace engine {
 		EVENT_CLASS_CATEGORY(EventCategoryApplication)
 	};
 
-	class ENGINE_API AppUpdateEvent : public Event
+	class ADZE_API AppUpdateEvent : public Event
 	{
 	public:
 		AppUpdateEvent() {}
@@ -55,7 +55,7 @@ namespace engine {
 		EVENT_CLASS_CATEGORY(EventCategoryApplication)
 	};
 
-	class ENGINE_API AppRenderEvent : public Event
+	class ADZE_API AppRenderEvent : public Event
 	{
 	public:
 		AppRenderEvent() {}

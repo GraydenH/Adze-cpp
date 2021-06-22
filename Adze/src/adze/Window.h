@@ -1,25 +1,25 @@
 #pragma once
 
-#include "enginepch.h"
+#include "adzepch.h"
 
-#include "engine/Core.h"
-#include "engine/Events/Event.h"
+#include "adze/Core.h"
+#include "adze/events/Event.h"
 
-namespace engine {
+namespace adze {
 
 	struct WindowProps {
 		std::string title;
 		unsigned int width;
 		unsigned int height;
 
-		WindowProps(const std::string& title = "Game Engine",
+		WindowProps(const std::string& title = "Adze Engine",
 			        unsigned int width = 1280,
 			        unsigned int height = 720)
 			: title(title), width(width), height(height) {}
 	};
 
 	// Interface representing a desktop system based Window
-	class ENGINE_API Window {
+	class ADZE_API Window {
 	public:
 		using EventCallback = std::function<void(Event&)>;
 

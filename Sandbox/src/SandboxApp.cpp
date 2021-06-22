@@ -1,11 +1,11 @@
-#include <Engine.h>
+#include <Adze.h>
 
-class SandBox : public engine::Application {
+class SandBox : public adze::Application {
 public:
 	SandBox() {}
 	~SandBox() {}
 };
 
-engine::Application* engine::createApplication() {
+adze::Application* adze::createApplication() {
 	return new SandBox();
 }

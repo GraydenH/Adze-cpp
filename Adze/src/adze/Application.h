@@ -4,8 +4,8 @@
 #include "events/Event.h"
 #include "Window.h"
 
-namespace engine {
-	class ENGINE_API Application {
+namespace adze {
+	class ADZE_API Application {
 	public:
 		Application();
 		~Application();
