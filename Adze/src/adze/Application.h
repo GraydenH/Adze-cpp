@@ -5,6 +5,8 @@
 #include "Window.h"
 #include "adze/events/ApplicationEvent.h"
 
+#include "adze/LayerStack.h"
+
 namespace adze {
 	class ADZE_API Application {
 	public:
@@ -13,10 +15,16 @@ namespace adze {
 
 		void run();
 		void onEvent(Event& ev);
-		bool onWindowClose(WindowCloseEvent& ev);
+
+		void pushLayer(Layer* layer);
+		void pushOverlay(Layer* layer);
 	private:
+		bool onWindowClose(WindowCloseEvent& ev);
+
 		std::unique_ptr<Window> window;
 		bool running = true;
+		
+		LayerStack layerStack;
 	};
 
 	// define in client
