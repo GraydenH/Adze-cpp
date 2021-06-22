@@ -4,6 +4,8 @@
 #include "adze/events/KeyEvent.h"
 #include "adze/events/MouseEvent.h"
 
+#include <glad/glad.h>
+
 namespace adze {
 
 	static bool glfwInitialized = false;
@@ -43,6 +45,10 @@ namespace adze {
 
 		window = glfwCreateWindow((int)props.width, (int)props.height, data.title.c_str(), nullptr, nullptr);
 		glfwMakeContextCurrent(window);
+
+		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
+		ADZE_CORE_ASSERT(status, "Failed to initialize Glad!");
+
 		glfwSetWindowUserPointer(window, &data);
 		setVSync(true);
 

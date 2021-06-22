@@ -13,8 +13,10 @@ outputdir = "%{cfg.buildscfg}-%{cfg.system}-%{cfg.architecture}"
 
 IncludeDir = {}
 IncludeDir["GLFW"] = "ADZE/vendor/GLFW/include"
+IncludeDir["Glad"] = "ADZE/vendor/Glad/include"
 
 include "Adze/vendor/GLFW"
+include "Adze/vendor/Glad"
 
 project "Adze"
 	location "Adze"
@@ -35,11 +37,13 @@ project "Adze"
 	includedirs {
     "%{prj.name}/src",
     "%{prj.name}/vendor/spdlog/include",
-		"%{IncludeDir.GLFW}"
+		"%{IncludeDir.GLFW}",
+		"%{IncludeDir.Glad}",
 	}
 
 	links {
 		"GLFW",
+		"Glad",
 		"opengl32.lib"
 	}
 
@@ -61,7 +65,8 @@ project "Adze"
 	filter "configurations:Debug"
 		defines {
 			"ADZE_DEBUG",
-			"ADZE_ENABLE_ASSERTS"
+			"ADZE_ENABLE_ASSERTS",
+			"GLFW_INCLUDE_NONE"
 		}
 		symbols "On"
 
