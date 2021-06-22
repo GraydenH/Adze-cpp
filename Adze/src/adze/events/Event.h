@@ -46,8 +46,7 @@ namespace adze {
 		virtual int getCategoryFlags() const = 0;
 		virtual std::string toString() const { return getName(); }
 
-		inline bool isInCategory(EventCategory category)
-		{
+		inline bool isInCategory(EventCategory category) {
 			return getCategoryFlags() & category;
 		}
 	protected:
@@ -59,17 +58,13 @@ namespace adze {
 		template<typename T>
 		using EventFn = std::function<bool(T&)>;
 	public:
-		EventDispatcher(Event& event)
-			: event(event)
-		{
-		}
+		EventDispatcher(Event& event): event(event) {}
 
-		template<typename T>
-		bool dispatch(EventFn<T> func)
-		{
-			if (event.getEventType() == T::getStaticType())
-			{
-				event.handled = func(*(T*)&event);
+		
+		template<typename T, typename F>
+		bool dispatch(const F& func) {
+			if (event.getEventType() == T::getStaticType()) {
+				event.handled |= func(static_cast<T&>(event));
 				return true;
 			}
 			return false;
@@ -78,8 +73,7 @@ namespace adze {
 		Event& event;
 	};
 
-	inline std::ostream& operator<<(std::ostream& os, const Event& e)
-	{
+	inline std::ostream& operator<<(std::ostream& os, const Event& e) {
 		return os << e.toString();
 	}
 }

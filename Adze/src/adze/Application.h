@@ -3,6 +3,7 @@
 #include "Core.h"
 #include "events/Event.h"
 #include "Window.h"
+#include "adze/events/ApplicationEvent.h"
 
 namespace adze {
 	class ADZE_API Application {
@@ -11,6 +12,8 @@ namespace adze {
 		~Application();
 
 		void run();
+		void onEvent(Event& ev);
+		bool onWindowClose(WindowCloseEvent& ev);
 	private:
 		std::unique_ptr<Window> window;
 		bool running = true;

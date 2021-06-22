@@ -6,8 +6,7 @@
 
 namespace adze {
 
-	class WindowsWindow : public Window
-	{
+	class WindowsWindow : public Window {
 	public:
 		WindowsWindow(const WindowProps& props);
 		virtual ~WindowsWindow();
@@ -18,7 +17,7 @@ namespace adze {
 		inline unsigned int getHeight() const override { return data.height; }
 
 		// Window attributes
-		inline void setEventCallback(const EventCallback& callback) override { data.EventCallback = callback; }
+		inline void setEventCallback(const EventCallback& callback) override { data.eventCallback = callback; }
 		void setVSync(bool enabled) override;
 		bool isVSync() const override;
 	private:
@@ -27,13 +26,12 @@ namespace adze {
 	private:
 		GLFWwindow* window;
 
-		struct WindowData
-		{
+		struct WindowData {
 			std::string title;
 			unsigned int width, height;
 			bool vSync;
 
-			EventCallback EventCallback;
+			EventCallback eventCallback;
 		};
 
 		WindowData data;
