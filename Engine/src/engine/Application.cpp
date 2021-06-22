@@ -4,19 +4,21 @@
 #include "engine/events/ApplicationEvent.h"
 #include "engine/Log.h"
 
-engine::Application::Application() {
-}
+#include <GLFW/glfw3.h>
 
-engine::Application::~Application() {
-}
+namespace engine {
+	Application::Application() {
+		window = std::unique_ptr<Window>(Window::create());
+	}
 
-void engine::Application::run() {
-	WindowResizeEvent e(1280, 720);
-	if (e.isInCategory(EventCategoryApplication)) {
-		ENGINE_TRACE(e);
+	Application::~Application() {
 	}
-	if (e.isInCategory(EventCategoryInput)) {
-		ENGINE_TRACE(e);
+
+	void Application::run() {
+		while (running) {
+			glClearColor(1, 0, 1, 1);
+			glClear(GL_COLOR_BUFFER_BIT);
+			window->update();
+		}
 	}
-	while (true);
 }
