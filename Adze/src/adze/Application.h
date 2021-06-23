@@ -18,6 +18,9 @@ namespace adze {
 
 		void pushLayer(Layer* layer);
 		void pushOverlay(Layer* layer);
+
+		inline Window& getWindow() { return *window; }
+		inline static Application& get() { return *instance; }
 	private:
 		bool onWindowClose(WindowCloseEvent& ev);
 
@@ -25,6 +28,8 @@ namespace adze {
 		bool running = true;
 		
 		LayerStack layerStack;
+
+		static Application* instance;
 	};
 
 	// define in client

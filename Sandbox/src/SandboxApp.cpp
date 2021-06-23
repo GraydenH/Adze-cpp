@@ -2,7 +2,10 @@
 
 class SandBox : public adze::Application {
 public:
-	SandBox() {}
+	SandBox() {
+		//pushLayer(new ExampleLayer());
+		pushOverlay(new adze::ImguiLayer());
+	}
 	~SandBox() {}
 };
 

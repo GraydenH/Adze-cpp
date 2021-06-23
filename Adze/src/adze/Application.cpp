@@ -8,8 +8,13 @@
 namespace adze {
 
 #define BIND_EVENT_FN(x) std::bind(&x, this, std::placeholders::_1)
+	
+	Application* Application::instance = nullptr;
 
 	Application::Application() {
+		ADZE_CORE_ASSERT(!instance, "Application already exists!");
+		instance = this;
+
 		window = std::unique_ptr<Window>(Window::create());
 		window->setEventCallback(BIND_EVENT_FN(Application::onEvent));
 	}
@@ -19,10 +24,12 @@ namespace adze {
 
 	void Application::pushLayer(Layer* layer) {
 		layerStack.pushLayer(layer);
+		layer->attach();
 	}
 
 	void Application::pushOverlay(Layer* layer) {
 		layerStack.pushOverlay(layer);
+		layer->attach();
 	}
 
 	void Application::run() {
@@ -41,11 +48,12 @@ namespace adze {
 	void Application::onEvent(Event& ev) {
 		EventDispatcher dispatcher(ev);
 		dispatcher.dispatch<WindowCloseEvent>(BIND_EVENT_FN(Application::onWindowClose));
-		for (auto it = layerStack.end(); it != layerStack.begin();) {
-			(*--it)->onEvent(ev);
+
+		for (auto it = layerStack.rbegin(); it != layerStack.rend(); ++it) {
 			if (ev.handled) {
 				break;
 			}
+			(*it)->onEvent(ev);
 		}
 
 		ADZE_CORE_TRACE("{0}", ev);

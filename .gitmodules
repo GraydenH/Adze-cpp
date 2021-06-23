@@ -4,3 +4,6 @@
 [submodule "Adze/vendor/spdlog"]
 	path = Adze/vendor/spdlog
 	url = https://github.com/gabime/spdlog
+[submodule "Adze/vendor/imgui"]
+	path = Adze/vendor/imgui
+	url = https://github.com/TheCherno/imgui

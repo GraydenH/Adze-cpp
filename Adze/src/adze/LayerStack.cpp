@@ -2,19 +2,19 @@
 #include "LayerStack.h"
 
 namespace adze {
-
 	LayerStack::LayerStack() {
-		layerInsert = layers.begin();
 	}
 
 	LayerStack::~LayerStack() {
-		for (Layer* layer : layers) {
+		for (Layer* layer :layers) {
+			layer->detach();
 			delete layer;
 		}
 	}
 
 	void LayerStack::pushLayer(Layer* layer) {
-		layerInsert = layers.emplace(layerInsert, layer);
+		layers.emplace(layers.begin() + layerInsertIndex, layer);
+		layerInsertIndex++;
 	}
 
 	void LayerStack::pushOverlay(Layer* overlay) {
@@ -22,16 +22,18 @@ namespace adze {
 	}
 
 	void LayerStack::popLayer(Layer* layer) {
-		auto it = std::find(layers.begin(), layers.end(), layer);
-		if (it != layers.end()) {
+		auto it = std::find(layers.begin(), layers.begin() + layerInsertIndex, layer);
+		if (it != layers.begin() + layerInsertIndex) {
+			layer->detach();
 			layers.erase(it);
-			layerInsert--;
+			layerInsertIndex--;
 		}
 	}
 
 	void LayerStack::popOverlay(Layer* overlay) {
-		auto it = std::find(layers.begin(), layers.end(), overlay);
+		auto it = std::find(layers.begin() + layerInsertIndex, layers.end(), overlay);
 		if (it != layers.end()) {
+			overlay->detach();
 			layers.erase(it);
 		}
 	}
