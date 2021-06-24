@@ -7,8 +7,6 @@
 
 namespace adze {
 
-#define BIND_EVENT_FN(x) std::bind(&x, this, std::placeholders::_1)
-	
 	Application* Application::instance = nullptr;
 
 	Application::Application() {
@@ -16,7 +14,7 @@ namespace adze {
 		instance = this;
 
 		window = std::unique_ptr<Window>(Window::create());
-		window->setEventCallback(BIND_EVENT_FN(Application::onEvent));
+		window->setEventCallback(ADZE_BIND_EVENT_FN(Application::onEvent));
 	}
 
 	Application::~Application() {
@@ -47,7 +45,7 @@ namespace adze {
 
 	void Application::onEvent(Event& ev) {
 		EventDispatcher dispatcher(ev);
-		dispatcher.dispatch<WindowCloseEvent>(BIND_EVENT_FN(Application::onWindowClose));
+		dispatcher.dispatch<WindowCloseEvent>(ADZE_BIND_EVENT_FN(Application::onWindowClose));
 
 		for (auto it = layerStack.rbegin(); it != layerStack.rend(); ++it) {
 			if (ev.handled) {

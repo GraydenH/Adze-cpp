@@ -17,7 +17,7 @@ namespace adze {
 		None = 0,
 		WindowClose, WindowResize, WindowFocus, WindowLostFocus, WindowMoved,
 		AppTick, AppUpdate, AppRender,
-		KeyPressed, KeyReleased,
+		KeyPressed, KeyReleased, KeyTyped,
 		MouseButtonPressed, MouseButtonReleased, MouseMoved, MouseScrolled
 	};
 
@@ -59,7 +59,6 @@ namespace adze {
 	public:
 		EventDispatcher(Event& event): event(event) {}
 
-		
 		template<typename T, typename F>
 		bool dispatch(const F& func) {
 			if (event.getEventType() == T::getStaticType()) {

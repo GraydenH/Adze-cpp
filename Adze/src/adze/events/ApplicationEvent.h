@@ -6,8 +6,7 @@
 
 namespace adze {
 
-	class ADZE_API WindowResizeEvent : public Event
-	{
+	class ADZE_API WindowResizeEvent : public Event {
 	public:
 		WindowResizeEvent(unsigned int width, unsigned int height)
 			: width(width), height(height) {}

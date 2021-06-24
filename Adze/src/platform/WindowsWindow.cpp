@@ -81,7 +81,12 @@ namespace adze {
 				data.eventCallback(ev);
 			}
 		});
-
+		
+		glfwSetCharCallback(window, [](GLFWwindow* window, unsigned int character) {
+			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+			KeyTypedEvent event(character);
+			data.eventCallback(event);
+		});
 
 		glfwSetMouseButtonCallback(window, [](GLFWwindow* window, int button, int action, int mods) {
 			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
