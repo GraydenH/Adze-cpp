@@ -1,6 +1,7 @@
 .vs/
 *.sln
 *.vcxproj*
+#.ini
 
 target/
 obj/
