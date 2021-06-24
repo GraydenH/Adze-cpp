@@ -18,8 +18,11 @@ namespace adze {
 
 		// Window attributes
 		inline void setEventCallback(const EventCallback& callback) override { data.eventCallback = callback; }
+		
 		void setVSync(bool enabled) override;
 		bool isVSync() const override;
+		
+		inline virtual void* getNativeWindow() const override { return window; };
 	private:
 		virtual void init(const WindowProps& props);
 		virtual void shutdown();

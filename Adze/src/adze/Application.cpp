@@ -3,6 +3,8 @@
 #include "Application.h"
 #include "adze/Log.h"
 
+#include "adze/Input.h"
+
 #include <glad/glad.h>
 
 namespace adze {
@@ -38,6 +40,8 @@ namespace adze {
 			for (Layer* layer : layerStack) {
 				layer->update();
 			}
+
+			ADZE_CORE_TRACE("{0}, {1}", Input::getMouseX(), Input::getMouseY());
 
 			window->update();
 		}
