@@ -12,9 +12,10 @@ workspace "Adze"
 outputdir = "%{cfg.buildscfg}-%{cfg.system}-%{cfg.architecture}"
 
 IncludeDir = {}
-IncludeDir["GLFW"] = "ADZE/vendor/GLFW/include"
-IncludeDir["Glad"] = "ADZE/vendor/Glad/include"
-IncludeDir["imgui"] = "ADZE/vendor/imgui"
+IncludeDir["GLFW"] = "Adze/vendor/GLFW/include"
+IncludeDir["Glad"] = "Adze/vendor/Glad/include"
+IncludeDir["imgui"] = "Adze/vendor/imgui"
+IncludeDir["glm"] = "Adze/vendor/glm"
 
 include "Adze/vendor/GLFW"
 include "Adze/vendor/Glad"
@@ -42,6 +43,7 @@ project "Adze"
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.Glad}",
 		"%{IncludeDir.imgui}",
+		"%{IncludeDir.glm}",
 	}
 
 	links {
@@ -99,6 +101,7 @@ project "Sandbox"
 	}
 
 	includedirs {
+		"Adze/vendor/glm",
 		"Adze/vendor/spdlog/include",
 		"Adze/src"
 	}

@@ -7,3 +7,6 @@
 [submodule "Adze/vendor/imgui"]
 	path = Adze/vendor/imgui
 	url = https://github.com/TheCherno/imgui
+[submodule "Adze/vendor/glm"]
+	path = Adze/vendor/glm
+	url = https://github.com/g-truc/glm
