@@ -1,20 +1,21 @@
 workspace "Adze"
 	architecture "x64"
-
 	startproject "Sandbox"
 
-	configurations {
+	configurations
+	{
 		"Debug",
 		"Release",
 		"Dist"
 	}
 
-outputdir = "%{cfg.buildscfg}-%{cfg.system}-%{cfg.architecture}"
+outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+-- Include directories relative to root folder (solution directory)
 IncludeDir = {}
 IncludeDir["GLFW"] = "Adze/vendor/GLFW/include"
 IncludeDir["Glad"] = "Adze/vendor/Glad/include"
-IncludeDir["imgui"] = "Adze/vendor/imgui"
+IncludeDir["ImGui"] = "Adze/vendor/imgui"
 IncludeDir["glm"] = "Adze/vendor/glm"
 
 include "Adze/vendor/GLFW"
@@ -22,9 +23,11 @@ include "Adze/vendor/Glad"
 include "Adze/vendor/imgui"
 
 project "Adze"
-	location "Adze"
-	kind "SharedLib"
+	location "Hazel"
+	kind "StaticLib"
 	language "C++"
+	cppdialect "C++17"
+	staticruntime "on"
 
 	targetdir ("target/" .. outputdir .. "/%{prj.name}")
 	objdir ("obj/" .. outputdir .. "/%{prj.name}")
@@ -32,21 +35,31 @@ project "Adze"
 	pchheader "adzepch.h"
 	pchsource "Adze/src/adzepch.cpp"
 
-	files {
+	files
+	{
 		"%{prj.name}/src/**.h",
 		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/vendor/glm/glm/**.hpp",
+		"%{prj.name}/vendor/glm/glm/**.inl",
 	}
 
-	includedirs {
-    "%{prj.name}/src",
-    "%{prj.name}/vendor/spdlog/include",
+	defines
+	{
+		"_CRT_SECURE_NO_WARNINGS"
+	}
+
+	includedirs
+	{
+		"%{prj.name}/src",
+		"%{prj.name}/vendor/spdlog/include",
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.Glad}",
-		"%{IncludeDir.imgui}",
-		"%{IncludeDir.glm}",
+		"%{IncludeDir.ImGui}",
+		"%{IncludeDir.glm}"
 	}
 
-	links {
+	links
+	{
 		"GLFW",
 		"Glad",
 		"ImGui",
@@ -54,80 +67,78 @@ project "Adze"
 	}
 
 	filter "system:windows"
-		cppdialect "C++17"
-		staticruntime "Off"
 		systemversion "latest"
 
-		defines {
+		defines
+		{
 			"ADZE_PLATFORM_WINDOWS",
 			"ADZE_BUILD_DLL",
-		}
-
-	postbuildcommands
-	{
-		("{COPY} %{cfg.buildtarget.relpath} ../target/" .. outputdir .. "/Sandbox")
-	}
-
-	filter "configurations:Debug"
-		defines {
-			"ADZE_DEBUG",
-			"ADZE_ENABLE_ASSERTS",
 			"GLFW_INCLUDE_NONE"
 		}
-		symbols "On"
+
+	filter "configurations:Debug"
+		defines "ADZE_DEBUG"
+		runtime "Debug"
+		symbols "on"
 
 	filter "configurations:Release"
 		defines "ADZE_RELEASE"
-		optimize "On"
+		runtime "Release"
+		optimize "on"
 
 	filter "configurations:Dist"
 		defines "ADZE_DIST"
-		optimize "On"
-
-	filter { "system:windows", "configurations:Release" }
-		buildoptions "/MT"
+		runtime "Release"
+		optimize "on"
 
 project "Sandbox"
 	location "Sandbox"
 	kind "ConsoleApp"
 	language "C++"
+	cppdialect "C++17"
+	staticruntime "on"
 
 	targetdir ("target/" .. outputdir .. "/%{prj.name}")
 	objdir ("obj/" .. outputdir .. "/%{prj.name}")
 
-	files {
+	files
+	{
 		"%{prj.name}/src/**.h",
-		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/src/**.cpp"
 	}
 
-	includedirs {
-		"Adze/vendor/glm",
+	includedirs
+	{
 		"Adze/vendor/spdlog/include",
-		"Hazel/vendor",
-		"Adze/src"
+		"Adze/src",
+		"Adze/vendor",
+		"%{IncludeDir.glm}"
 	}
 
-	links {
+	links
+	{
 		"Adze"
 	}
 
 	filter "system:windows"
-		cppdialect "C++17"
-		staticruntime "On"
 		systemversion "latest"
 
-		defines {
+		defines
+		{
 			"ADZE_PLATFORM_WINDOWS"
 		}
 
 	filter "configurations:Debug"
 		defines "ADZE_DEBUG"
-		symbols "On"
+		runtime "Debug"
+		symbols "on"
 
 	filter "configurations:Release"
 		defines "ADZE_RELEASE"
-		optimize "On"
+		runtime "Release"
+		optimize "on"
 
 	filter "configurations:Dist"
 		defines "ADZE_DIST"
-		optimize "On"
+		runtime "Release"
+		optimize "on"
