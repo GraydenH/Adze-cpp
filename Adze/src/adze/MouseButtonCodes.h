@@ -1,0 +1,14 @@
+#pragma once
+
+#define ADZE_MOUSE_BUTTON_1         0
+#define ADZE_MOUSE_BUTTON_2         1
+#define ADZE_MOUSE_BUTTON_3         2
+#define ADZE_MOUSE_BUTTON_4         3
+#define ADZE_MOUSE_BUTTON_5         4
+#define ADZE_MOUSE_BUTTON_6         5
+#define ADZE_MOUSE_BUTTON_7         6
+#define ADZE_MOUSE_BUTTON_8         7
+#define ADZE_MOUSE_BUTTON_LAST      ADZE_MOUSE_BUTTON_8
+#define ADZE_MOUSE_BUTTON_LEFT      ADZE_MOUSE_BUTTON_1
+#define ADZE_MOUSE_BUTTON_RIGHT     ADZE_MOUSE_BUTTON_2
+#define ADZE_MOUSE_BUTTON_MIDDLE    ADZE_MOUSE_BUTTON_3
