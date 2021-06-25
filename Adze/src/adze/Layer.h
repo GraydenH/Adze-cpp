@@ -14,6 +14,8 @@ namespace adze {
 		virtual void detach() {}
 		virtual void update() {}
 		virtual void onEvent(Event& event) {}
+		
+		virtual void onImguiRender() {}
 
 		inline const std::string& getName() const { return name; }
 	protected:

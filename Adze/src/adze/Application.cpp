@@ -17,6 +17,8 @@ namespace adze {
 
 		window = std::unique_ptr<Window>(Window::create());
 		window->setEventCallback(ADZE_BIND_EVENT_FN(Application::onEvent));
+		imguiLayer = new ImguiLayer();
+		pushOverlay(imguiLayer);
 	}
 
 	Application::~Application() {
@@ -40,6 +42,11 @@ namespace adze {
 			for (Layer* layer : layerStack) {
 				layer->update();
 			}
+
+			imguiLayer->begin();
+			for (Layer* layer : layerStack)
+				layer->onImguiRender();
+			imguiLayer->end();
 
 			ADZE_CORE_TRACE("{0}, {1}", Input::getMouseX(), Input::getMouseY());
 

@@ -5,6 +5,7 @@
 #include "Window.h"
 #include "adze/events/ApplicationEvent.h"
 
+#include "adze/imgui/ImguiLayer.h"
 #include "adze/LayerStack.h"
 
 namespace adze {
@@ -25,6 +26,7 @@ namespace adze {
 		bool onWindowClose(WindowCloseEvent& ev);
 
 		std::unique_ptr<Window> window;
+		ImguiLayer* imguiLayer;
 		bool running = true;
 		
 		LayerStack layerStack;

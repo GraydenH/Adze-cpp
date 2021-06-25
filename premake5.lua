@@ -103,6 +103,7 @@ project "Sandbox"
 	includedirs {
 		"Adze/vendor/glm",
 		"Adze/vendor/spdlog/include",
+		"Hazel/vendor",
 		"Adze/src"
 	}
 

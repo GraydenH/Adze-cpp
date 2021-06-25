@@ -12,20 +12,14 @@ namespace adze {
 		ImguiLayer();
 		~ImguiLayer();
 
-		void attach();
-		void detach();
-		void update();
-		void onEvent(Event& event);
-	private:
-		bool onMouseButtonPressedEvent(MouseButtonPressedEvent& e);
-		bool onMouseButtonReleasedEvent(MouseButtonReleasedEvent& e);
-		bool onMouseMovedEvent(MouseMovedEvent& e);
-		bool onMouseScrolledEvent(MouseScrolledEvent& e);
-		bool onKeyPressedEvent(KeyPressedEvent& e);
-		bool onKeyReleasedEvent(KeyReleasedEvent& e);
-		bool onKeyTypedEvent(KeyTypedEvent& e);
-		bool onWindowResizeEvent(WindowResizeEvent& e);
+		virtual void attach() override;
+		virtual void detach() override;
+		virtual void update() override;
 
+		virtual void onImguiRender() override;
+		void begin();
+		void end();
+	private:
 		float time = 0.0f;
 	};
 

@@ -1,11 +1,15 @@
 #pragma once
 
 #ifdef ADZE_PLATFORM_WINDOWS
+#if ADZE_DYNAMIC_LINK
 	#ifdef ADZE_BUILD_DLL
 		#define ADZE_API __declspec(dllexport)
 	#else
 		#define ADZE_API __declspec(dllimport)
 	#endif
+#else 
+	#define ADZE_API
+#endif
 #else
 	#error ADZE only supports windows
 #endif
