@@ -3,6 +3,7 @@
 #include "adze/Window.h"
 
 #include <GLFW/glfw3.h>
+#include <adze/renderer/RenderContext.h>
 
 namespace adze {
 
@@ -27,6 +28,7 @@ namespace adze {
 		virtual void init(const WindowProps& props);
 		virtual void shutdown();
 	private:
+		RenderContext* context;
 		GLFWwindow* window;
 
 		struct WindowData {

@@ -28,11 +28,18 @@ namespace adze {
 		std::unique_ptr<Window> window;
 		ImguiLayer* imguiLayer;
 		bool running = true;
+
 		
 		LayerStack layerStack;
 
 		static Application* instance;
+
+		unsigned int vertexArray;
+		unsigned int vertexBuffer;
+		unsigned int indexBuffer;
+
 	};
+
 
 	// define in client
 	Application* createApplication();

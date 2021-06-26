@@ -4,7 +4,7 @@
 #include "adze/events/KeyEvent.h"
 #include "adze/events/MouseEvent.h"
 
-#include <glad/glad.h>
+#include "platform/opengl/OpenglContext.h"
 
 namespace adze {
 
@@ -44,10 +44,9 @@ namespace adze {
 		}
 
 		window = glfwCreateWindow((int)props.width, (int)props.height, data.title.c_str(), nullptr, nullptr);
-		glfwMakeContextCurrent(window);
-
-		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
-		ADZE_CORE_ASSERT(status, "Failed to initialize Glad!");
+		
+		context = new OpenglContext(window);
+		context->init();
 
 		glfwSetWindowUserPointer(window, &data);
 		setVSync(true);
@@ -107,7 +106,6 @@ namespace adze {
 			data.eventCallback(ev);
 		});
 		
-
 		glfwSetCursorPosCallback(window, [](GLFWwindow* window, double x, double y) {
 			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
 			
@@ -122,7 +120,7 @@ namespace adze {
 
 	void WindowsWindow::update() {
 		glfwPollEvents();
-		glfwSwapBuffers(window);
+		context->swapBuffers();
 	}
 
 	void WindowsWindow::setVSync(bool enabled) {
