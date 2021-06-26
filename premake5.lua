@@ -23,7 +23,7 @@ include "Adze/vendor/Glad"
 include "Adze/vendor/imgui"
 
 project "Adze"
-	location "Hazel"
+	location "Adze"
 	kind "StaticLib"
 	language "C++"
 	cppdialect "C++17"
