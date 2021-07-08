@@ -7,6 +7,7 @@
 
 #include "adze/imgui/ImguiLayer.h"
 #include "adze/LayerStack.h"
+#include <adze/Shader.h>
 
 namespace adze {
 	class ADZE_API Application {
@@ -29,7 +30,6 @@ namespace adze {
 		ImguiLayer* imguiLayer;
 		bool running = true;
 
-		
 		LayerStack layerStack;
 
 		static Application* instance;
@@ -37,6 +37,8 @@ namespace adze {
 		unsigned int vertexArray;
 		unsigned int vertexBuffer;
 		unsigned int indexBuffer;
+
+		std::unique_ptr<Shader> shader;
 
 	};
 
