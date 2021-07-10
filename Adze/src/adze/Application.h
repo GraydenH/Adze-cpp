@@ -8,6 +8,7 @@
 #include "adze/imgui/ImguiLayer.h"
 #include "adze/LayerStack.h"
 #include <adze/Shader.h>
+#include <adze/renderer/Buffer.h>
 
 namespace adze {
 	class ADZE_API Application {
@@ -35,11 +36,10 @@ namespace adze {
 		static Application* instance;
 
 		unsigned int vertexArray;
-		unsigned int vertexBuffer;
-		unsigned int indexBuffer;
 
 		std::unique_ptr<Shader> shader;
-
+		std::unique_ptr<VertexBuffer> vertexBuffer;
+		std::unique_ptr<IndexBuffer> indexBuffer;
 	};
 
 
