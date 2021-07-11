@@ -8,10 +8,14 @@ namespace adze {
 		OpenglVertexBuffer(float* vertices, uint32_t size);
 		virtual ~OpenglVertexBuffer();
 
-		virtual void bind() const;
-		virtual void unbind() const;
+		virtual void bind() const override;
+		virtual void unbind() const override;
+
+		virtual const BufferLayout& getLayout() const override { return layout; };
+		virtual void setLayout(const BufferLayout& value) override {layout = value; };
 	private:
 		uint32_t rendererId;
+		BufferLayout layout;
 	};
 	
 	class OpenglIndexBuffer : public IndexBuffer {
